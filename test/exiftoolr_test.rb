@@ -18,7 +18,7 @@ describe Exiftoolr do
   end
 
   it 'has errors with files without EXIF headers' do
-    e = Exiftoolr.new("Gemfile")
+    e = Exiftoolr.new('Gemfile')
     e.errors?.must_be_true
   end
 

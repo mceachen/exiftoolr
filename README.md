@@ -8,77 +8,19 @@ This gem is the simplest thing that could possibly work that
 reads the output of [exiftool](http://www.sno.phy.queensu.ca/~phil/exiftool)
 and renders it into a ruby hash, with correctly typed values and symbolized keys.
 
-Rubies 1.9 and later are supported.
+Note that this gem was renamed from 'exiftoolr' to the less-ungainly 'exiftool'
+as of version 0.2.0. This gem simply adds a "class alias" from Exiftoolr to Exiftool,
+and is dependant on that new gem.
 
-## What constitutes "correct values"?
+Consumers should switch to the new gem's namespace as soon as possible.
 
-* GPS latitude and longitude are rendered as signed floats,
-  where north and east are positive, and west and south are negative.
-* Values like shutter speed and exposure time are rendered as Rationals,
-  which lets the caller show them as fractions (1/250) or as comparable numeric instances.
-* String values like "interop" and "serial number" are kept as strings
-  (which preserves zero prefixes)
-* Timestamps are attempted to be interpreted with correct timezones and sub-second resolution, if
-  the header contains that data.
-  Please note that EXIF headers don't always include a timezone offset, so we just adopt the system
-  timezone, which may, of course, be wrong.
-
-## Usage
-
-```ruby
-require 'exiftoolr'
-e = Exiftoolr.new("path/to/iPhone 4S.jpg")
-e.to_hash
-# => {:make => "Apple", :gps_longitude => -122.47566667, …
-e.to_display_hash
-# => {"Make" => "Apple", "GPS Longitude" => -122.47566667, …
-```
-
-### Multiple file support
-
-This gem supports Exiftool's multiget, which lets you fetch metadata for many files at once.
-
-This can be dramatically more efficient (like, 60x faster) than spinning up the ```exiftool```
-process for each file.
-
-Supply an array to the Exiftoolr initializer, then use ```.result_for```:
-
-```ruby
-require 'exiftoolr'
-e = Exiftoolr.new(Dir["**/*.jpg"])
-result = e.result_for("path/to/iPhone 4S.jpg")
-result.to_hash
-# => {:make => "Apple", :gps_longitude => -122.47566667, …
-result[:gps_longitude]
-# => -122.47566667
-
-e.files_with_results
-# => ["path/to/iPhone 4S.jpg", "path/to/Droid X.jpg", …
-```
-
-### When things go wrong
-
-* ```Exiftoolr::NoSuchFile``` is raised if the provided filename doesn't exist.
-* ```Exiftoolr::ExiftoolNotInstalled``` is raised if ```exiftool``` isn't in your ```PATH```.
-* If ExifTool has a problem reading EXIF data, no exception is raised, but ```#errors?``` will return true:
-
-```ruby
-Exiftoolr.new("Gemfile").errors?
-#=> true
-```
-
-
-## Installation
-
-First [install ExifTool](http://www.sno.phy.queensu.ca/~phil/exiftool/install.html).
-
-Then, add this your Gemfile:
-
-    gem 'exiftoolr'
-
-and then run ```bundle```.
+Go to [exiftool](https://github.com/mceachen/exiftool) for more information!
 
 ## Change history
+
+### 0.2.0
+
+* Renamed to 'exiftool' (but kept backward compatibility)
 
 ### 0.1.0
 
