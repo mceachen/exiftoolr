@@ -2,17 +2,13 @@
 
 [![Build Status](https://secure.travis-ci.org/mceachen/exiftoolr.png?branch=master)](http://travis-ci.org/mceachen/exiftoolr)
 [![Gem Version](https://badge.fury.io/rb/exiftoolr.png)](http://rubygems.org/gems/exiftoolr)
-[![Code Climate](https://codeclimate.com/github/mceachen/exiftoolr.png)](https://codeclimate.com/github/mceachen/exiftoolr)
+[![Code Climate](https://codeclimate.com/github/mceachen/exiftool.png)](https://codeclimate.com/github/mceachen/exiftool)
 
-This gem is the simplest thing that could possibly work that
-reads the output of [exiftool](http://www.sno.phy.queensu.ca/~phil/exiftool)
-and renders it into a ruby hash, with correctly typed values and symbolized keys.
-
-Note that this gem was renamed from 'exiftoolr' to the less-ungainly 'exiftool'
+This gem was renamed from 'exiftoolr' to the less-ungainly 'exiftool'
 as of version 0.2.0. This gem simply adds a "class alias" from Exiftoolr to Exiftool,
 and is dependant on that new gem.
 
-Consumers should switch to the new gem's namespace as soon as possible.
+Consumers should switch to the new gem's namespace as soon as they can.
 
 Go to [exiftool](https://github.com/mceachen/exiftool) for more information!
 
